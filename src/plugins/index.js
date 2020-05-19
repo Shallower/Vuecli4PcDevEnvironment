@@ -1,11 +1,12 @@
-import Validator from './validator'
-import Utils from './utils'
-import EventBus from './event.bus'
+import Vue from "vue";
+import Validator from "./validator";
+import Utils from "./utils";
+import EventBus from "./event.bus";
 
-export { Validator, Utils, EventBus }
+export { Validator, Utils, EventBus };
 
-const Plugins = [Validator, Utils, EventBus]
+const Plugins = [Validator, Utils, EventBus];
 
 Plugins.map(plugin => {
-  Vue.use(plugin)
-})
+  Vue.use(plugin);
+});
