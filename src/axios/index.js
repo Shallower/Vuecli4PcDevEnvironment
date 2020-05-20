@@ -1,9 +1,9 @@
 /*
  * Axios 公共请求处理
- * @Author: liangzc 
- * @Date: 2018-04-13 17:47:37 
- * @Last Modified by: liangzc
- * @Last Modified time: 2018-09-12 16:00:39
+ * @Author: 389194069@qq.com 
+ * @Date: 2012-04-13 17:47:37 
+ * @Last Modified by: 389194069@qq.com
+ * @Last Modified time: 2012-05-13 16:00:39
  */
 import axios from 'axios'
 import router from '@/router'

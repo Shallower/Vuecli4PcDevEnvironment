@@ -1,11 +1,11 @@
 /*
  * 事件总线
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2018-03-08 09:33:11 
- * @Last Modified by: liangzc
+ * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-03-08 09:35:39
  */
-let install = function(Vue) {
+let install = function (Vue) {
   let bus = new Vue()
 
   Object.defineProperties(bus, {

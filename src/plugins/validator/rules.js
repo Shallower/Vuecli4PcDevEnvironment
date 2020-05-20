@@ -1,8 +1,8 @@
 /*
  * 校验规则
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2017-07-20
- * @Last Modified by: liangzc
+ * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-08-08 14:33:52
  */
 
@@ -13,7 +13,7 @@ let idCard = {
   /**
    * 身份证验证
    */
-  idCardValidate: function(idCard) {
+  idCardValidate: function (idCard) {
     idCard = idCard ? idCard.replace(/ /g, '') : idCard // 对身份证号码做处理。包括字符间有空格。
     /**
      * 验证15位数身份证号码中的生日是否是有效生日
@@ -22,7 +22,7 @@ let idCard = {
      *            15位书身份证字符串
      * @return
      */
-    let isValidityBrithBy15IdCard = function(idCard15) {
+    let isValidityBrithBy15IdCard = function (idCard15) {
       let year = idCard15.substring(6, 8)
       let month = idCard15.substring(8, 10)
       let day = idCard15.substring(10, 12)
@@ -44,7 +44,7 @@ let idCard = {
      *            18位书身份证字符串
      * @return {Boolean}
      */
-    let isValidityBrithBy18IdCard = function(idCard18) {
+    let isValidityBrithBy18IdCard = function (idCard18) {
       let year = idCard18.substring(6, 10)
       let month = idCard18.substring(10, 12)
       let day = idCard18.substring(12, 14)
@@ -66,7 +66,7 @@ let idCard = {
      *            身份证号码数组
      * @return {Boolean}
      */
-    let isTrueValidateCodeBy18IdCard = function(a_idCard) {
+    let isTrueValidateCodeBy18IdCard = function (a_idCard) {
       let Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1] // 加权因子
       let ValideCode = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2] // 身份证验证位值.10代表X
       let sum = 0 // 声明加权求和变量
@@ -107,7 +107,7 @@ let idCard = {
    *            15/18位身份证号码
    * @return {Boolean}
    */
-  birthDayByIdCard: function(idCard) {
+  birthDayByIdCard: function (idCard) {
     idCard = idCard ? idCard.replace(/ /g, '') : idCard // 对身份证号码做处理。包括字符间有空格。
     if (!this.idCardValidate(idCard)) return null
     let year, month, day
@@ -129,7 +129,7 @@ let idCard = {
    *            15/18位身份证号码
    * @return {String} '0'-男,'1'-女
    */
-  maleOrFemalByIdCard: function(idCard) {
+  maleOrFemalByIdCard: function (idCard) {
     idCard = idCard ? idCard.replace(/ /g, '') : idCard // 对身份证号码做处理。包括字符间有空格。
     if (!this.idCardValidate(idCard)) return null
     if (idCard.length === 15) {
@@ -156,7 +156,7 @@ let rules = {
     message: '手机号码格式不正确'
   },
   required: {
-    test: function(value) {
+    test: function (value) {
       return value !== null && value !== undefined && /\S+/.test(value)
     },
     required: true,
@@ -190,13 +190,13 @@ let rules = {
    * 4、姓名字段长度不小于2个字符
    */
   fullname: {
-    test: function(value) {
+    test: function (value) {
       return value ?
         /^[\u2E80-\u9FFF]+[·|\s|\u2E80-\u9FFF]*[\u2E80-\u9FFF]+$/.test(
           value
         ) ||
-            /^[a-zA-Z]+[•|\s|a-zA-Z]*[a-zA-Z|•]+$/.test(value) ||
-            value.length < 32 :
+        /^[a-zA-Z]+[•|\s|a-zA-Z]*[a-zA-Z|•]+$/.test(value) ||
+        value.length < 32 :
         false
     },
     message: '请正确输入姓名'
@@ -228,7 +228,7 @@ let rules = {
   },
   address: {
     //是否是合法地址（必须包含汉字，不能连续5个相同字符，不少于10个字节）
-    test: function(value) {
+    test: function (value) {
       function getBytesCount(value) {
         if (
           !value ||
@@ -296,7 +296,7 @@ let rules = {
     message: '请正确输入{0}日期'
   },
   idcard: {
-    test: function(value) {
+    test: function (value) {
       return idCard.idCardValidate(value)
     },
     placeholder: '', //占位
@@ -358,7 +358,7 @@ let rules = {
   },
   minLength: {
     //最小长度
-    test: function(value, rule) {
+    test: function (value, rule) {
       //rule 定义的规则的值
       return value && rule && value.length >= parseInt(rule)
     },
@@ -366,21 +366,21 @@ let rules = {
   },
   maxLength: {
     //最大长度
-    test: function(value, rule) {
+    test: function (value, rule) {
       return value && rule && value.length <= parseInt(rule)
     },
     message: '请输入一个长度最大为{0}位的字符'
   },
   min: {
     //最小值
-    test: function(value, rule) {
+    test: function (value, rule) {
       return value && rule && Number(value) >= Number(rule || '0')
     },
     message: '请输入一个大于等于{0}的数字'
   },
   max: {
     //最大值
-    test: function(value, rule) {
+    test: function (value, rule) {
       return (
         value &&
         rule &&
@@ -391,7 +391,7 @@ let rules = {
   },
   base: {
     //基数整除
-    test: function(value, rule) {
+    test: function (value, rule) {
       return value && value % parseInt(rule || '1') === 0
     },
     message: '请输入{0}的整数倍'

@@ -1,11 +1,11 @@
 /*
  * 业务工具
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2018-05-26 10:04:03 
- * @Last Modified by: liangzc
+ * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-08-15 09:58:06
  */
-let BizTools = (function() {
+let BizTools = (function () {
   let MapOption, RoleType
 
   /**

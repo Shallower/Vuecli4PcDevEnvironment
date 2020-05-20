@@ -1,14 +1,14 @@
 /*
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2017-07-31 
- * @Last Modified by: liangzc
+ * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-07-05 13:51:01
  */
 /**
  * @param {Vue} Vue
  * @param {Object} options {utils: {replace: Function,...}}
  */
-let install = function(Vue, options) {
+let install = function (Vue, options) {
   if (install.installed) return
   Vue.$utils = Vue.prototype.$utils = Object.assign(
     {},

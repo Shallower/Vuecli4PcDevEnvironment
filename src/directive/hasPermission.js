@@ -1,6 +1,6 @@
 /*
  * 自定义权限指令
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2018-05-08 16:23:53 
  * @Last Modified by: wu529778790
  * @Last Modified time: 2018-07-07 17:16:06
@@ -11,7 +11,7 @@ const hasPermission = {
     if (!permissionList) {
       console.error(
         `权限判断不生效。因路由中不包含permission字段，请检查路由表设置。当前路由地址：${
-          vue.$route.path
+        vue.$route.path
         }`
       )
       return true
@@ -39,7 +39,7 @@ const hasPermission = {
         }
         console.error(
           `权限判断不生效。因路由中permission字段对应操作权限配置非数组类型，请检查路由表设置。当前路由地址：${
-            vue.$route.path
+          vue.$route.path
           }`
         )
       }
@@ -48,7 +48,7 @@ const hasPermission = {
   },
   install(Vue) {
     Vue.mixin({
-      created: function() {
+      created: function () {
         this.$permission = bindPermission =>
           hasPermission.has(this, bindPermission)
       }

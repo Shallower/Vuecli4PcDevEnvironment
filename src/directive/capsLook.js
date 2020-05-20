@@ -1,8 +1,8 @@
 /*
  * 大小写指令，接受修饰符 {upper, lower}
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2018-10-17 16:52:45 
- * @Last Modified by:   liangzc 
+ * @Last Modified by:   389194069@qq.com 
  * @Last Modified time: 2018-10-17 16:52:45 
  */
 export default {

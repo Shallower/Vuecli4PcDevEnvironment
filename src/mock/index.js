@@ -1,9 +1,9 @@
 /* eslint-disable */
 /*
  * 数据模拟
- * @Author: liangzc 
- * @Date: 2018-04-13 17:53:50 
- * @Last Modified by: liangzc
+ * @Author: 389194069@qq.com 
+ * @Date: 2012-04-13 17:53:50 
+ * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-07-12 17:40:05
  */
 import Mock from 'mockjs'

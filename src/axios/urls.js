@@ -1,8 +1,8 @@
 /*
  * 全局URL配置
- * @Author: liangzc 
- * @Date: 2018-04-13 17:48:21 
- * @Last Modified by: liangzc
+ * @Author: 389194069@qq.com 
+ * @Date: 2012-04-13 17:48:21 
+ * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-06-28 16:46:53
  */
 const Config = {

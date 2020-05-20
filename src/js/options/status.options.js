@@ -1,9 +1,9 @@
 /*
  * 公共状态配置
- * @Author: liangzc 
- * @Date: 2018-04-18 09:29:59 
- * @Last Modified by: liangzc
- * @Last Modified time: 2018-09-27 16:44:03
+ * @Author: 389194069@qq.com 
+ * @Date: 2012-04-18 09:29:59 
+ * @Last Modified by: 389194069@qq.com
+ * @Last Modified time: 2012-05-27 16:44:03
  */
 module.exports = {
   /**

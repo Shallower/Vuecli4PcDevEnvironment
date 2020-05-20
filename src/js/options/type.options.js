@@ -1,8 +1,8 @@
 /*
  * 公共类型配置
- * @Author: liangzc
- * @Date: 2018-04-18 09:29:59
- * @Last Modified by: liangzc
+ * @Author: 389194069@qq.com
+ * @Date: 2012-04-18 09:29:59
+ * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-10-30 09:58:31
  */
 module.exports = {

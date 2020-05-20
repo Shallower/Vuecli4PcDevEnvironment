@@ -1,8 +1,8 @@
 /*
  * 角色对照表
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2018-05-09 13:54:18 
- * @Last Modified by: liangzc
+ * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-06-12 14:24:26
  */
 module.exports = {

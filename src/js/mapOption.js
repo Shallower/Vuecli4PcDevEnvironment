@@ -1,8 +1,8 @@
 /*
  * 合并字典项，动态扫描 options 文件夹
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2018-06-12 10:14:27 
- * @Last Modified by: liangzc
+ * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-08-01 17:52:30
  */
 let _ = require('lodash'),

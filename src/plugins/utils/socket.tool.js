@@ -1,9 +1,9 @@
 /*
  * socket工具
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2018-05-26 10:04:03 
- * @Last Modified by: liangzc
- * @Last Modified time: 2018-09-27 13:49:49
+ * @Last Modified by: 389194069@qq.com
+ * @Last Modified time: 2012-05-27 13:49:49
  */
 class _$SocketClient {
   /**
@@ -141,7 +141,7 @@ class _$SocketClient {
         this.ws.onerror = null
         this.ws.onclose = null
         this.ws.close()
-      } catch (error) {}
+      } catch (error) { }
       this.ws = null
     }
   }
@@ -268,7 +268,7 @@ class _$SocketClient {
   }
 }
 
-let SocketTools = (function() {
+let SocketTools = (function () {
   /**
    * 创建webSocket
    * @param {String} url

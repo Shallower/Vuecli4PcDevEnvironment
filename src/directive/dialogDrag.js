@@ -1,7 +1,7 @@
 /*
  * dialog 拖拽指令
  * @Date: 2018-10-17 16:53:04 
- * @Last Modified by:   liangzc 
+ * @Last Modified by:   389194069@qq.com 
  * @Last Modified time: 2018-10-17 16:53:04 
  */
 export default {
@@ -14,7 +14,7 @@ export default {
         dragDom.style.cssText += ';top:0px;'
 
         // 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null);
-        const getStyle = (function() {
+        const getStyle = (function () {
           if (window.document.currentStyle) {
             return (dom, attr) => dom.currentStyle[attr]
           }
@@ -56,7 +56,7 @@ export default {
             styT = Number(styT.replace(/\px/g, ''))
           }
 
-          document.onmousemove = function(e) {
+          document.onmousemove = function (e) {
             // 通过事件委托，计算移动的距离
             let left = e.clientX - disX
             let top = e.clientY - disY
@@ -82,7 +82,7 @@ export default {
             vnode.child.$emit('dragDialog')
           }
 
-          document.onmouseup = function(e) {
+          document.onmouseup = function (e) {
             document.onmousemove = null
             document.onmouseup = null
           }

@@ -1,12 +1,12 @@
 /*
  * 全局配置
- * @Author: liangzc 
+ * @Author: 389194069@qq.com 
  * @Date: 2017-07-20 
- * @Last Modified by: liangzc
- * @Last Modified time: 2018-04-08 11:20:42
+ * @Last Modified by: 389194069@qq.com
+ * @Last Modified time: 2012-05-08 11:20:42
  */
 
-(function(window) {
+(function (window) {
   var global = {
     /**
      * 全局配置类
@@ -22,10 +22,10 @@
           'color:red;font-size:18px;font-style:oblique;'
         )
       } else {
-        console.log = function() {
+        console.log = function () {
           return false
         }
-        console.error = function() {
+        console.error = function () {
           return false
         }
       }

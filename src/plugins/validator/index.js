@@ -1,5 +1,5 @@
 /**
- * Created by Liangzc on 2017/11/08.
+ * Created by 389194069@qq.com on 2017/11/08.
  *
  * 使用说明:
  *
@@ -23,7 +23,7 @@
  */
 let { rules } = require('./rules'),
   VueComponent
-let validator = function() {}
+let validator = function () { }
 
 /**
  * 初始化Validator
@@ -36,15 +36,15 @@ let initValidator = (type = '') => {
       let required = type === 'required',
         test = defRule.test,
         valid =
-            required || !required && !VueComponent.$utils.isEmpty(value) ?
-              VueComponent.$utils.is('Function', defRule.test) ?
-                defRule.test.call(this, value) :
-                VueComponent.$utils.is('String', defRule.test) ?
-                  VueComponent.$utils.is('Function', test) ?
-                    test.call(this, value) :
-                    test.test(value) :
-                  defRule.test.test(value) :
-              true
+          required || !required && !VueComponent.$utils.isEmpty(value) ?
+            VueComponent.$utils.is('Function', defRule.test) ?
+              defRule.test.call(this, value) :
+              VueComponent.$utils.is('String', defRule.test) ?
+                VueComponent.$utils.is('Function', test) ?
+                  test.call(this, value) :
+                  test.test(value) :
+                defRule.test.test(value) :
+            true
       if (!valid) {
         callback(
           new Error(
@@ -116,7 +116,7 @@ validator.prototype.validate = (type = '', value) => {
   )
 }
 
-let install = function(Vue, options) {
+let install = function (Vue, options) {
   VueComponent = Vue
   options &&
     options.rules &&

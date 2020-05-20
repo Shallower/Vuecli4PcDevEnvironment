@@ -1,8 +1,8 @@
 /*
  * 滚动悬停指令
- * @Date: 2018-04-13 17:53:33 
- * @Last Modified by:   liangzc 
- * @Last Modified time: 2018-04-13 17:53:33 
+ * @Date: 2012-04-13 17:53:33 
+ * @Last Modified by:   389194069@qq.com 
+ * @Last Modified time: 2012-05-13 17:53:33 
  */
 const vueSticky = {}
 let listenAction
