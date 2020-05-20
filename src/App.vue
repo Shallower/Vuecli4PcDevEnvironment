@@ -1,32 +1,25 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: Hevin
+ * @Date: 2020-05-18 14:14:20
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-20 18:08:07
+--> 
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home999</router-link> |
-      <router-link to="/about">About555</router-link>
-    </div>
     <router-view />
   </div>
 </template>
 
+<script>
+export default {
+  name: "app",
+  created() {},
+  beforeDestroy() {}
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+// @import "./styles/index.scss"; // 全局自定义的css样式
 </style>

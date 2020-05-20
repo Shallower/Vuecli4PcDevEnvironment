@@ -3,8 +3,8 @@
  * @version:
  * @Author: 389194069@qq.com
  * @Date: 2019-08-19 10:32:25
- * @LastEditors: 389194069@qq.com
- * @LastEditTime: 2019-10-25 10:35:25
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-20 17:16:30
  */
 // vue.config.js 是一个可选的配置，也可以在package.json中使用vue来配置，那样就需要遵守更严格的json语法
 const path = require("path");
@@ -43,6 +43,7 @@ module.exports = {
   // 是否使用包含运行时编译器的 Vue 构建版本。设置为 true 后你就可以在 Vue 组件中使用 template 选项了，但是这会让你的应用额外增加 10kb 左右。(默认false)
   // runtimeCompiler: false,
   configureWebpack: config => {
+    config.entry.app = ["./src/js/globalConfig.js", "./src/main.js"];
     // 插件引用
     let plugins = [
       // gZip压缩

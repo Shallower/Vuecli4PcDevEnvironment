@@ -1,7 +1,22 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: Hevin
+ * @Date: 2020-05-19 18:02:17
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-20 16:22:43
+ */
+
 module.exports = {
   root: true,
   env: {
     node: true
+  },
+  globals: {
+    document: true,
+    localStorage: true,
+    window: true,
+    $globalConfig: true
   },
   extends: ["plugin:vue/essential", "eslint:recommended"],
   rules: {

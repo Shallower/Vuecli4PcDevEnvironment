@@ -1,12 +1,13 @@
 /*
- * 全局配置
- * @Author: 389194069@qq.com 
- * @Date: 2017-07-20 
- * @Last Modified by: 389194069@qq.com
- * @Last Modified time: 2012-05-08 11:20:42
+ * @Descripttion:全局配置
+ * @version:
+ * @Author: Hevin
+ * @Date: 2020-05-20 15:41:15
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-20 16:36:50
  */
 
-(function (window) {
+(function(window) {
   var global = {
     /**
      * 全局配置类
@@ -18,16 +19,16 @@
     logConfig() {
       if (this.globalConfig.console) {
         console.log(
-          '%cNow You Can Console Log...',
-          'color:red;font-size:18px;font-style:oblique;'
-        )
+          "%cNow You Can Console Log...",
+          "color:red;font-size:18px;font-style:oblique;"
+        );
       } else {
-        console.log = function () {
-          return false
-        }
-        console.error = function () {
-          return false
-        }
+        console.log = function() {
+          return false;
+        };
+        console.error = function() {
+          return false;
+        };
       }
     },
     /**
@@ -35,15 +36,16 @@
      */
     initConfig() {
       this.globalConfig[
-        process.env.ENV_CONFIG === 'dev' ? 'debug' : process.env.ENV_CONFIG
-      ] = true
+        process.env.NODE_ENV === "development" ? "debug" : process.env.NODE_ENV
+      ] = true;
 
       const console =
-        process.env.ENV_CONFIG === 'dev' || process.env.ENV_CONFIG === 'sit'
-      console && (this.globalConfig.console = console)
-      this.logConfig()
+        process.env.NODE_ENV === "development" ||
+        process.env.NODE_ENV === "sit";
+      console && (this.globalConfig.console = console);
+      this.logConfig();
     }
-  }
-  global.initConfig()
-  window.$globalConfig = global.globalConfig
-})(window)
+  };
+  global.initConfig();
+  window.$globalConfig = global.globalConfig;
+})(window);

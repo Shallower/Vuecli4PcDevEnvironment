@@ -1,0 +1,283 @@
+@import './mixin.scss';
+@import './btn.scss';
+@import './element-ui.scss';
+/*声明 WebFont*/
+@font-face {
+  font-family: 'SourceHanSansCN-Medium';
+  src: url('styles/font/SourceHanSansCN-Medium.eot');
+  src: url('styles//font/SourceHanSansCN-Medium.woff') format('woff'),
+    url('styles//font/SourceHanSansCN-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SourceHanSansCN-Regular';
+  src: url('styles//font/SourceHanSansCN-Regular.eot');
+  src: url('styles//font/SourceHanSansCN-Regular.woff') format('woff'),
+    url('styles//font/SourceHanSansCN-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, Arial, sans-serif;
+  height: 100%;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
+.el-button--text:active {
+  color: #5ab2fe;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.padding-content {
+  padding: 4px 0;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+//隐藏联系人自动填充样式
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+/*去掉Chrome自动填充时，input中的黄色背景  */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  border: 1px solid #ccc !important;
+  background-image: inherit;
+}
+
+//去掉数字输入框右侧的操作箭头
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+/** math **/
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+.ml-70 {
+  margin-left: 70px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+/** math **/
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+//main-container全局样式
+.link-type,
+.link-type:focus {
+  color: #337ab7;
+  cursor: pointer;
+  &:hover {
+    color: rgb(32, 160, 255);
+  }
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: ' ';
+    clear: both;
+    height: 0;
+  }
+}
+
+//修复弹层滚动穿透
+.modal-open-helper {
+  position: fixed;
+  width: 100%;
+}
+
+//公共隐藏样式
+.hide {
+  display: none;
+}
+
+//公共页面样式
+.page-container {
+  background-color: #fff;
+  margin-top: 10px;
+  padding: 20px 25px 25px;
+  .el-form.el-form--inline,
+  &.el-form.el-form--inline {
+    .el-input,
+    .el-textarea,
+    .el-checkbox-group,
+    .el-radio-group,
+    .el-date-editor {
+      width: 250px;
+    }
+  }
+}
+
+//公共页面表单样式
+.page-form-content {
+  .el-input,
+  .el-textarea,
+  .el-checkbox-group,
+  .el-radio-group,
+  .el-date-editor {
+    width: 270px;
+  }
+}
+
+// input的disabled,去掉disabled样式
+.el-input.is-disabled .el-input__inner,
+.el-cascader.is-disabled .el-cascader__label {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  padding: 0 15px;
+  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+  cursor: default;
+}
+
+.el-select .el-input.is-disabled .el-input__inner {
+  cursor: default;
+}
+
+.el-textarea.is-disabled .el-textarea__inner {
+  display: block;
+  resize: vertical;
+  padding: 5px 15px;
+  line-height: 1.5;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: inherit;
+  color: #606266;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: default;
+}
+
+//iconfont reset
+.iconfont {
+  &.icon-zhuxiao,
+  &.icon-xiangqing,
+  &.icon-daishenhe,
+  &.icon-kongtiaoguankong-,
+  &.icon-qiyong2 {
+    font-size: 18px;
+  }
+  &.icon-bianji,
+  &.icon-xiangqing1,
+  &.small {
+    font-size: 15px;
+  }
+  &.icon-picture.small {
+    font-size: 15.3px;
+  }
+}
+
+.el-icon-sold-out.small,
+.el-icon-circle-close-outline.small,
+.el-icon-download.small {
+  font-size: 15px;
+}

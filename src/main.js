@@ -1,3 +1,12 @@
+/*
+ * @Descripttion:入口文件
+ * @version:
+ * @Author: Hevin
+ * @Date: 2020-05-18 14:14:20
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-20 15:42:58
+ */
+
 import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
