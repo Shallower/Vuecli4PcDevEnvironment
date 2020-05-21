@@ -4,8 +4,8 @@
  * @Author: Hevin
  * @Date: 2020-05-18 14:14:20
  * @LastEditors: Hevin
- * @LastEditTime: 2020-05-20 18:08:07
---> 
+ * @LastEditTime: 2020-05-21 18:12:14
+-->
 <template>
   <div id="app">
     <router-view />
@@ -21,5 +21,5 @@ export default {
 </script>
 
 <style lang="scss">
-// @import "./styles/index.scss"; // 全局自定义的css样式
+@import "./styles/index.scss"; // 全局自定义的css样式
 </style>

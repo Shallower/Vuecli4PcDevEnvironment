@@ -4,9 +4,10 @@
  * @Author: Hevin
  * @Date: 2020-05-18 14:14:20
  * @LastEditors: Hevin
- * @LastEditTime: 2020-05-21 17:44:22
+ * @LastEditTime: 2020-05-21 18:08:00
  */
-import "normalize.css";
+import "normalize.css/normalize.css";
+import "../theme/source/index.css";
 import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
@@ -15,7 +16,6 @@ import store from "./store";
 import { MapOption, RoleType } from "@/js/mapOption";
 import "./plugins";
 import "./directive";
-console.log(99999, $globalConfig);
 $globalConfig.debug && require("./mock/index");
 Vue.config.productionTip = false;
 //install Global
