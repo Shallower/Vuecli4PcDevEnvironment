@@ -1,48 +1,48 @@
 /* eslint-disable */
 /*
  * 数据模拟
- * @Author: 389194069@qq.com 
- * @Date: 2012-04-13 17:53:50 
+ * @Author: 389194069@qq.com
+ * @Date: 2012-04-13 17:53:50
  * @Last Modified by: 389194069@qq.com
  * @Last Modified time: 2018-07-12 17:40:05
  */
-import Mock from 'mockjs'
+import Mock from "mockjs";
 
 // 获取 mock.Random 对象
-//const Random = Mock.Random
-Mock.mock(/v2000/)
+const Random = Mock.Random;
+Mock.mock(/v2000/);
 
 // Mock.mock( url, post/get , 返回的数据)；
-// Mock.mock(/v1\/login\/operatorLogin/, 'post', {
-//   //登录
-//   ret: 0,
-//   data: {
-//     optorCode: Random.id(),
-//     name: Random.cname(), // Random.cname() 随机生成一个常见的中文姓名
-//     createTime: Random.date() + ' ' + Random.time(), // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串
-//     uid: Random.guid(),
-//     id: Random.id(),
-//     token: Random.guid()
-//   }
-// });
+Mock.mock(/v1\/login\/operatorLogin/, "post", {
+  //登录
+  ret: 0,
+  data: {
+    optorCode: Random.id(),
+    name: Random.cname(), // Random.cname() 随机生成一个常见的中文姓名
+    createTime: Random.date() + " " + Random.time(), // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串
+    uid: Random.guid(),
+    id: Random.id(),
+    token: Random.guid()
+  }
+});
 
-// Mock.mock(/service\/getUserAndRole/, 'post', {
-//   //获取用户角色
-//   ret: 0,
-//   data: {
-//     userInfo: {
-//       name: Random.cname(), // Random.cname() 随机生成一个常见的中文姓名
-//       createTime: Random.date() + ' ' + Random.time(), // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串
-//       uid: Random.guid(),
-//       optorCode: Random.id(),
-//       id: Random.id()
-//     },
-//     role: {
-//       name: 'admin',
-//       permission: 'ALL'
-//     }
-//   }
-// });
+Mock.mock(/service\/getUserAndRole/, "post", {
+  //获取用户角色
+  ret: 0,
+  data: {
+    userInfo: {
+      name: Random.cname(), // Random.cname() 随机生成一个常见的中文姓名
+      createTime: Random.date() + " " + Random.time(), // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串
+      uid: Random.guid(),
+      optorCode: Random.id(),
+      id: Random.id()
+    },
+    role: {
+      name: "admin",
+      permission: "ALL"
+    }
+  }
+});
 
 // Mock.mock(/park\/list/, 'get', {
 //   //登录
@@ -74,10 +74,10 @@ Mock.mock(/v2000/)
 //   ]
 // });
 
-// Mock.mock(/getaddress\/sheng/, 'get', {
+// Mock.mock(/getaddress\/sheng/, "get", {
 //   //登录
 //   ret: 0,
-//   'data|34': [
+//   "data|34": [
 //     {
 //       value: () => Random.province() // Random.cname() 随机生成一个常见的中文姓名
 //     }

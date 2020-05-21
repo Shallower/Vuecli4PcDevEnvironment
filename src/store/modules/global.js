@@ -1,10 +1,10 @@
 /*
  * @Descripttion:全局配置Module
- * @version:
+ * @version:1.0
  * @Author: Hevin
  * @Date: 2020-05-20 17:07:43
  * @LastEditors: Hevin
- * @LastEditTime: 2020-05-20 17:33:34
+ * @LastEditTime: 2020-05-20 19:08:06
  */
 
 import {

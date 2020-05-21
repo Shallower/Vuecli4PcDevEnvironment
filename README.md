@@ -1,3 +1,12 @@
+<!--
+ * @Descripttion:解读文档
+ * @version:1.0
+ * @Author: Hevin
+ * @Date: 2020-05-18 14:14:32
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-21 17:33:03
+-->
+
 # vuecli4
 
 ## Project setup
@@ -49,3 +58,5 @@ vue-cli4.3.1
 - compression-webpack-plugin ——> gzip 压缩
 - v-charts ——> 图表处理插件，依赖 echarts
 - xlsx ——> xlsx 文件读取
+- screenfull ——> 全屏显示插件
+- lrz ——> 在客户端压缩好要上传的图片可以节省带宽更快的发送给后端，特别适合在移动设备上使用
