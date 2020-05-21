@@ -1,8 +1,8 @@
 /*
  * 错误日志
- * @Author: liangzc
+ * @Author: Hevin
  * @Date: 2018-04-08 10:19:49
- * @Last Modified by: liangzc
+ * @Last Modified by: Hevin
  * @Last Modified time: 2018-07-13 12:29:00
  */
 import { PUSH_LOG, CLEAR_LOG } from "@/store/types";

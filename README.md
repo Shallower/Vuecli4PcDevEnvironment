@@ -4,7 +4,7 @@
  * @Author: Hevin
  * @Date: 2020-05-18 14:14:32
  * @LastEditors: Hevin
- * @LastEditTime: 2020-05-21 17:33:03
+ * @LastEditTime: 2020-05-21 18:17:19
 -->
 
 # vuecli4
@@ -60,3 +60,4 @@ vue-cli4.3.1
 - xlsx ——> xlsx 文件读取
 - screenfull ——> 全屏显示插件
 - lrz ——> 在客户端压缩好要上传的图片可以节省带宽更快的发送给后端，特别适合在移动设备上使用
+- normalize.css ——> Normalize 支持包括手机浏览器在内的超多浏览器，同时对 HTML5 元素、排版、列表、嵌入的内容、表单和表格都进行了一般化

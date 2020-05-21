@@ -1,8 +1,8 @@
 /*
  * 错误日志路由
- * @Author: liangzc
+ * @Author: Hevin
  * @Date: 2018-04-13 17:55:24
- * @Last Modified by: liangzc
+ * @Last Modified by: Hevin
  * @Last Modified time: 2018-06-12 11:08:48
  */
 import { RoleType } from "@/js/mapOption";

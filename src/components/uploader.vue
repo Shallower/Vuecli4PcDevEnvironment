@@ -1,16 +1,16 @@
-/*
- * 封装el-upload，上传自动补充占位，含图片压缩
- * @Author: liangzc 
- * @Date: 2018-04-13 17:50:42 
- * @Last Modified by: liangzc
- * @Last Modified time: 2018-06-20 18:10:26
- */
+<!--
+ * @Descripttion: 封装el-upload，上传自动补充占位，含图片压缩
+ * @version: 1.0
+ * @Author: Hevin
+ * @Date: 2020-05-12 11:54:17
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-21 18:23:18
+-->
 <template>
-  <div class="uploader-scss"
-    :style="{'text-align': align}">
-    <label v-if="title"
-      class="el-form-item__label">{{ title }}</label>
-    <el-upload ref="upload"
+  <div class="uploader-scss" :style="{ 'text-align': align }">
+    <label v-if="title" class="el-form-item__label">{{ title }}</label>
+    <el-upload
+      ref="upload"
       :action="action"
       :data="data"
       :name="fileKey"
@@ -27,66 +27,73 @@
       :on-success="fileSuccess"
       :on-error="fileError"
       :show-file-list="limit !== 1 || (limit === 1 && !isChooseImage)"
-      v-bind="isChooseImage && !isForm ? {
-        httpRequest
-      }: {}">
-      <div v-if="limit === 1 && isChooseImage && files.length > 0"
+      v-bind="
+        isChooseImage && !isForm
+          ? {
+              httpRequest
+            }
+          : {}
+      "
+    >
+      <div
+        v-if="limit === 1 && isChooseImage && files.length > 0"
         slot="tip"
         @mouseenter="mouseEnter"
         @mouseleave="mouseLeave"
         :class="['hover-area', title ? 'top-37' : '']"
-        :style="{left: clickArea ? `${clickArea.offsetLeft}px` : 0}">
-        <img :src="files[0].url"
-          class="avatar">
-        <span v-show="actionShow"
-          class="hover-actions">
-          <i v-if="isChooseImage"
+        :style="{ left: clickArea ? `${clickArea.offsetLeft}px` : 0 }"
+      >
+        <img :src="files[0].url" class="avatar" />
+        <span v-show="actionShow" class="hover-actions">
+          <i
+            v-if="isChooseImage"
             class="el-icon-zoom-in mr-10"
-            @click="filePreview(files[0])" />
-          <i v-if="!readonly"
+            @click="filePreview(files[0])"
+          />
+          <i
+            v-if="!readonly"
             class="el-icon-delete"
-            @click="fileRemove(files[0], [])" />
+            @click="fileRemove(files[0], [])"
+          />
         </span>
       </div>
-      <i v-else-if="showPlus"
-        class="el-icon-plus" />
-      <div v-if="$slots.length === 0 || $utils.isEmptyObject(this.$slots)"
+      <i v-else-if="showPlus" class="el-icon-plus" />
+      <div
+        v-if="$slots.length === 0 || $utils.isEmptyObject(this.$slots)"
         slot="tip"
-        :class="uploadTipClass">
+        :class="uploadTipClass"
+      >
         {{ textTips }}
-        <slot name="submit"
-          :submit="submit">
-          <el-button v-if="!autoUpload && !hideSubmit"
+        <slot name="submit" :submit="submit">
+          <el-button
+            v-if="!autoUpload && !hideSubmit"
             size="small"
             type="primary"
-            @click="submit">{{ submitText }}</el-button>
+            @click="submit"
+            >{{ submitText }}</el-button
+          >
         </slot>
       </div>
-      <slot/>
+      <slot />
     </el-upload>
-    <el-dialog :visible.sync="dialogVisible"
-      append-to-body
-      width="30%">
+    <el-dialog :visible.sync="dialogVisible" append-to-body width="30%">
       <span v-if="previewFile">
         {{ previewFile.name }} &nbsp;&nbsp;&nbsp;&nbsp; {{ previewTips }}
       </span>
-      <img v-if="previewFile"
-        width="100%"
-        :src="previewFile.url"
-        alt="">
+      <img v-if="previewFile" width="100%" :src="previewFile.url" alt="" />
     </el-dialog>
   </div>
 </template>
 <script>
 export default {
-  name: 'uploader',
+  name: "uploader",
   props: {
     /**
      * 上传地址
      */
     action: {
       type: String,
-      default: ''
+      default: ""
     },
     /**
      * 设置上传的请求头部
@@ -100,7 +107,7 @@ export default {
     data: {
       type: Object,
       default: () => {
-        return {}
+        return {};
       }
     },
     /**
@@ -114,7 +121,7 @@ export default {
      */
     submitText: {
       type: String,
-      default: '点击上传'
+      default: "点击上传"
     },
     /**
      * 允许上传个数
@@ -128,7 +135,7 @@ export default {
      */
     fileKey: {
       type: String,
-      default: 'file'
+      default: "file"
     },
     /**
      * 图片文件大小限制，默认2M，单位 kb
@@ -148,21 +155,21 @@ export default {
      */
     align: {
       type: String,
-      default: 'left'
+      default: "left"
     },
     /**
      * 列表类型
      */
     listType: {
       type: String,
-      default: 'picture-card'
+      default: "picture-card"
     },
     /**
      * 接受上传的文件类型
      */
     accept: {
       type: String,
-      default: 'image/*;'
+      default: "image/*;"
     },
     /**
      * 是否为Form 表单
@@ -174,7 +181,7 @@ export default {
     fileList: {
       type: Array,
       default: () => {
-        return []
+        return [];
       }
     },
     /**
@@ -258,27 +265,27 @@ export default {
       actionShow: false,
       dialogVisible: false,
       clickArea: null
-    }
+    };
   },
   created() {
     if (!window.lrz) {
-      require('lrz/dist/lrz.all.bundle')
+      require("lrz/dist/lrz.all.bundle");
     }
 
     this.$nextTick(() => {
-      let parentDom = document.querySelector('.uploader-scss')
-      this.clickArea = parentDom ?
-        parentDom.querySelector('.el-upload--picture-card') :
-        this.clickArea
-    })
+      let parentDom = document.querySelector(".uploader-scss");
+      this.clickArea = parentDom
+        ? parentDom.querySelector(".el-upload--picture-card")
+        : this.clickArea;
+    });
   },
   watch: {
     fileList(val) {
-      this.files = val
+      this.files = val;
     },
     showPlus(val) {
       this.limit > 1 &&
-        (this.clickArea.style.display = val ? 'inline-block' : 'none')
+        (this.clickArea.style.display = val ? "inline-block" : "none");
     }
   },
   computed: {
@@ -286,37 +293,37 @@ export default {
       return (
         (this.$slots.length === 0 || this.$utils.isEmptyObject(this.$slots)) &&
         this.files.length < this.limit
-      )
+      );
     },
     uploadTipClass() {
       return [
-        'el-upload__tip',
-        this.listType !== 'picture-card' ? 'text-style' : ''
-      ]
+        "el-upload__tip",
+        this.listType !== "picture-card" ? "text-style" : ""
+      ];
     },
     limitSize() {
-      return (this.fileSize / 1024).toFixed(1)
+      return (this.fileSize / 1024).toFixed(1);
     },
     isChooseImage() {
-      return this.accept && this.accept.indexOf('image/') !== -1
+      return this.accept && this.accept.indexOf("image/") !== -1;
     },
     textTips() {
-      return this.tips ?
-        this.tips :
-        this.isChooseImage ?
-          `只能上传jpg/jpeg/png文件，且不超过 ${this.limitSize} MB` :
-          ''
+      return this.tips
+        ? this.tips
+        : this.isChooseImage
+        ? `只能上传jpg/jpeg/png文件，且不超过 ${this.limitSize} MB`
+        : "";
     },
     sizeText() {
       let size = (
-        (this.compressFile ?
-          this.compressFile.fileLen :
-          this.previewFile.size) / 1024
-      ).toFixed(2)
-      return size && !isNaN(size) ? size + 'KB' : ''
+        (this.compressFile
+          ? this.compressFile.fileLen
+          : this.previewFile.size) / 1024
+      ).toFixed(2);
+      return size && !isNaN(size) ? size + "KB" : "";
     },
     previewTips() {
-      return `${this.compressFile ? 'compress：' : ''}${this.sizeText}`
+      return `${this.compressFile ? "compress：" : ""}${this.sizeText}`;
     }
   },
   methods: {
@@ -324,88 +331,88 @@ export default {
      * 上传前判断
      */
     beforeUpload(file) {
-      const isJPG = /image.(png|PNG|jpg|JPG|jpeg|JPEG)/.test(file.type)
-      const isLt2M = file.size / 1024 < this.fileSize
+      const isJPG = /image.(png|PNG|jpg|JPG|jpeg|JPEG)/.test(file.type);
+      const isLt2M = file.size / 1024 < this.fileSize;
 
       if (this.isChooseImage && !isJPG) {
-        this.$message.warning('上传文件只能是 JPG、JPEG、PNG 格式!')
+        this.$message.warning("上传文件只能是 JPG、JPEG、PNG 格式!");
       }
       if (!isLt2M) {
         this.$message.warning(
-          '上传文件大小不能超过 {0}MB!'.format(this.limitSize)
-        )
+          "上传文件大小不能超过 {0}MB!".format(this.limitSize)
+        );
       }
       if (!this.isForm) {
-        return this.isChooseImage ? isJPG && isLt2M : isLt2M
+        return this.isChooseImage ? isJPG && isLt2M : isLt2M;
       }
       return new Promise((resolve, reject) => {
         this.compress(file)
           .then(rst => {
-            let tempFile = rst.file
-            tempFile.uid = file.uid
-            tempFile.name = file.name
-            resolve(tempFile)
+            let tempFile = rst.file;
+            tempFile.uid = file.uid;
+            tempFile.name = file.name;
+            resolve(tempFile);
           })
-          .catch(error => reject(error))
-      })
+          .catch(error => reject(error));
+      });
     },
     /**
      * 状态改变监听
      */
     fileChange(file, fileList) {
-      this.files = this.limit === 1 ? [file] : fileList
+      this.files = this.limit === 1 ? [file] : fileList;
       if (!this.onChoose) {
-        this.onChange && this.onChange(file, fileList, this.data)
-        return
+        this.onChange && this.onChange(file, fileList, this.data);
+        return;
       }
-      if (fileList.length === 0) this.onChoose(file, fileList, this.data)
-      this.isChooseImage ?
-        this.compress(file.raw).then(rst => {
-          file.base64 = rst.base64
-          this.onChoose(file, fileList, this.data)
-        }) :
-        this.onChoose(file, fileList, this.data)
+      if (fileList.length === 0) this.onChoose(file, fileList, this.data);
+      this.isChooseImage
+        ? this.compress(file.raw).then(rst => {
+            file.base64 = rst.base64;
+            this.onChoose(file, fileList, this.data);
+          })
+        : this.onChoose(file, fileList, this.data);
     },
     /**
      * 文件移除监听
      */
     fileRemove(file, fileList) {
-      this.files = this.limit === 1 ? [] : fileList
-      this.previewFile = this.previewFile === file ? null : this.previewFile
-      this.onRemove && this.onRemove(file, fileList, this.data)
+      this.files = this.limit === 1 ? [] : fileList;
+      this.previewFile = this.previewFile === file ? null : this.previewFile;
+      this.onRemove && this.onRemove(file, fileList, this.data);
     },
     /**
      * 预览
      */
     filePreview(file) {
-      this.previewFile = file
-      this.dialogVisible = true
+      this.previewFile = file;
+      this.dialogVisible = true;
     },
     /**
      * 文件上传成功
      */
     fileSuccess(res, file, fileList) {
-      this.files = this.limit === 1 ? [file] : fileList
-      this.onSuccess && this.onSuccess(res, file, fileList, this.data)
+      this.files = this.limit === 1 ? [file] : fileList;
+      this.onSuccess && this.onSuccess(res, file, fileList, this.data);
     },
     /**
      * 文件上传失败
      */
     fileError(err, file, fileList) {
-      this.files = this.limit === 1 ? [] : fileList
-      this.onError && this.onError(err, file, fileList, this.data)
+      this.files = this.limit === 1 ? [] : fileList;
+      this.onError && this.onError(err, file, fileList, this.data);
     },
     /**
      * 鼠标放上去时，显示预览及删除按钮
      */
     mouseEnter() {
-      !this.disabled && (this.actionShow = true)
+      !this.disabled && (this.actionShow = true);
     },
     /**
      * 鼠标离开时隐藏
      */
     mouseLeave() {
-      this.actionShow = false
+      this.actionShow = false;
     },
     /**
      * 自定义上传逻辑
@@ -413,41 +420,41 @@ export default {
     httpRequest(options) {
       return new Promise((resolve, reject) => {
         if (this.$utils.isEmpty(options.action)) {
-          this.error && this.$message.warning('上传地址不能为空')
-          reject({ message: '上传地址不能为空' })
-          return
+          this.error && this.$message.warning("上传地址不能为空");
+          reject({ message: "上传地址不能为空" });
+          return;
         }
         this.compress(options.file).then(rst => {
           if (this.isForm) {
             for (let key in this.data) {
-              rst.formData.append(key, this.data[key])
+              rst.formData.append(key, this.data[key]);
             }
           } else {
             this.data[this.fileKey] =
-              this.limit === 1 ? rst.base64 : [rst.base64]
+              this.limit === 1 ? rst.base64 : [rst.base64];
           }
           this.axios({
             url: options.action,
-            method: 'post',
+            method: "post",
             headers: options.headers,
             withCredentials: options.withCredentials,
             silence: true,
             data: this.isForm ? rst.formData : this.data,
             onUploadProgress: e => {
               if (e.total > 0) {
-                e.percent = e.loaded / e.total * 100
+                e.percent = (e.loaded / e.total) * 100;
               }
-              options.onProgress(e)
+              options.onProgress(e);
             }
           })
             .then(resp => {
-              resolve(resp)
+              resolve(resp);
             })
             .catch(err => {
-              reject(err)
-            })
-        })
-      })
+              reject(err);
+            });
+        });
+      });
     },
     /**
      * 压缩图片
@@ -459,12 +466,12 @@ export default {
             .then(rst => {
               let fileType =
                 file.type ||
-                ((rst.base64 || '').split(';')[0] || '').split(':')[1]
+                ((rst.base64 || "").split(";")[0] || "").split(":")[1];
               if (!/image.(png|PNG|jpg|JPG|jpeg|JPEG)/.test(fileType)) {
                 this.error &&
-                  this.$message.warning('不支持的文件类型：' + fileType)
-                reject({ message: '不支持的文件类型：' + fileType })
-                return
+                  this.$message.warning("不支持的文件类型：" + fileType);
+                reject({ message: "不支持的文件类型：" + fileType });
+                return;
               }
               this.compressFile = {
                 name: file.name,
@@ -472,35 +479,35 @@ export default {
                 size: file.size,
                 raw: file.raw,
                 fileLen: rst.fileLen
-              }
-              rst.formData.append('fileType', (fileType || '').split('/')[1])
+              };
+              rst.formData.append("fileType", (fileType || "").split("/")[1]);
               console.log(
-                '压缩前：',
+                "压缩前：",
                 (rst.origin.size / 1024).toFixed(2),
-                'KB'
-              )
-              console.log('压缩后：', (rst.fileLen / 1024).toFixed(2), 'KB')
-              return rst
+                "KB"
+              );
+              console.log("压缩后：", (rst.fileLen / 1024).toFixed(2), "KB");
+              return rst;
             })
             .then(rst => {
-              resolve(rst)
+              resolve(rst);
             })
             .catch(err => {
-              console.error(err)
-              this.error && this.$message.error('压缩图片失败')
-              reject(err)
-            })
+              console.error(err);
+              this.error && this.$message.error("压缩图片失败");
+              reject(err);
+            });
         } else {
-          this.error && this.$message.warning('缺少图片压缩组件')
-          reject({ message: '缺少图片压缩组件' })
+          this.error && this.$message.warning("缺少图片压缩组件");
+          reject({ message: "缺少图片压缩组件" });
         }
-      })
+      });
     },
     submit() {
-      this.$refs.upload.submit()
+      this.$refs.upload.submit();
     }
   }
-}
+};
 </script>
 <style lang="scss">
 .uploader-scss {
@@ -556,6 +563,3 @@ export default {
   }
 }
 </style>
-
-
-

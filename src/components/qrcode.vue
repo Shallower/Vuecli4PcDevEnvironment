@@ -1,5 +1,11 @@
-/* * 查看二维码 * @Author: hyzh * @Date: 2018-06-12 11:04:12 * @Last Modified
-by: liangzc * @Last Modified time: 2018-08-31 09:49:54 */
+<!--
+ * @Descripttion: 查看二维码
+ * @version: 1.0
+ * @Author: Hevin
+ * @Date: 2020-05-12 11:54:17
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-21 18:22:01
+-->
 <template>
   <div ref="qrcode" class="page-container page-qrcode">
     <div class="qrcode-box">

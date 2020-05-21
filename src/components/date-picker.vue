@@ -1,12 +1,14 @@
-/*
- * 封装el-date-picker
- * @Author: liangzc 
- * @Date: 2018-04-13 17:49:44 
- * @Last Modified by: liangzc
- * @Last Modified time: 2018-04-16 13:26:30
- */
+<!--
+ * @Descripttion: 封装el-date-picker 
+ * @version: 1.0
+ * @Author: Hevin
+ * @Date: 2020-05-12 11:54:17
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-21 18:19:58
+-->
 <template>
-  <el-date-picker v-model="date"
+  <el-date-picker
+    v-model="date"
     :type="type"
     :placeholder="placeholder"
     :format="format"
@@ -15,11 +17,12 @@
     :default-value="defaultValue"
     :clearable="clearable"
     :readonly="readonly"
-    :disabled="disabled" />
+    :disabled="disabled"
+  />
 </template>
 <script>
 export default {
-  name: 'date-picker',
+  name: "date-picker",
   props: {
     /**
      * v-model
@@ -32,7 +35,7 @@ export default {
      */
     type: {
       type: String,
-      default: 'date'
+      default: "date"
     },
     placeholder: {
       type: String
@@ -55,7 +58,7 @@ export default {
     pickerOptions: {
       type: Object,
       default: () => {
-        return {}
+        return {};
       }
     },
     /**
@@ -63,7 +66,7 @@ export default {
      */
     rangeSeparator: {
       type: String,
-      default: ' - '
+      default: " - "
     },
     /**
      * DatePicker打开时默认显示的时间
@@ -95,36 +98,34 @@ export default {
   },
   data() {
     return {
-      date: ''
-    }
+      date: ""
+    };
   },
   watch: {
     date(val) {
       if (Array.isArray(val)) {
         this.$emit(
-          'input',
-          val.length > 0 && !this.$utils.isEmpty(this.valueFormat) ?
-            val.map(vl => this.$utils.formatDateTime(vl, this.valueFormat)) :
-            val
-        )
+          "input",
+          val.length > 0 && !this.$utils.isEmpty(this.valueFormat)
+            ? val.map(vl => this.$utils.formatDateTime(vl, this.valueFormat))
+            : val
+        );
       } else {
         this.$emit(
-          'input',
-          !this.$utils.isEmpty(val) && !this.$utils.isEmpty(this.valueFormat) ?
-            this.$utils.formatDateTime(val, this.valueFormat) :
-            val
-        )
+          "input",
+          !this.$utils.isEmpty(val) && !this.$utils.isEmpty(this.valueFormat)
+            ? this.$utils.formatDateTime(val, this.valueFormat)
+            : val
+        );
       }
     },
     value(val) {
       if (Array.isArray(val) && Array.isArray(this.date)) {
-        if (val[0] !== this.date[0] || val[1] !== this.date[1]) this.date = val
+        if (val[0] !== this.date[0] || val[1] !== this.date[1]) this.date = val;
       } else {
-        this.date = val
+        this.date = val;
       }
     }
   }
-}
+};
 </script>
-
-

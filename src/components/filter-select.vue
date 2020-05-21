@@ -1,12 +1,14 @@
-/*
- * 封装远程数据过滤组件
- * @Author: liangzc 
- * @Date: 2018-04-13 17:48:35 
- * @Last Modified by: liangzc
- * @Last Modified time: 2018-09-25 17:38:26
- */
+<!--
+ * @Descripttion: 封装远程数据过滤组件
+ * @version: 1.0
+ * @Author: Hevin
+ * @Date: 2020-05-12 11:54:17
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-21 18:20:19
+-->
 <template>
-  <el-select ref="select"
+  <el-select
+    ref="select"
     v-model="selected"
     :filterable="filterable"
     :clearable="clearable"
@@ -22,22 +24,27 @@
     @change="change"
     @visible-change="visibleChange"
     :filter-method="filterMethod"
-    :remote-method="remoteMethod">
-    <el-option v-if="Array.isArray(dataArray)"
+    :remote-method="remoteMethod"
+  >
+    <el-option
+      v-if="Array.isArray(dataArray)"
       v-for="(item, index) in dataArray"
       :key="index"
       :label="getLabel(item)"
-      :value="getValue(item, valueItem)" />
-    <el-option v-if="!Array.isArray(dataArray)"
+      :value="getValue(item, valueItem)"
+    />
+    <el-option
+      v-if="!Array.isArray(dataArray)"
       v-for="(value, key, index) in dataArray"
       :key="index"
       :label="getValue(value, valueItem)"
-      :value="String(key)" />
+      :value="String(key)"
+    />
   </el-select>
 </template>
 <script>
 export default {
-  name: 'filter-select',
+  name: "filter-select",
   props: {
     /**
      * v-model
@@ -65,7 +72,7 @@ export default {
      */
     method: {
       type: String,
-      default: 'get'
+      default: "get"
     },
     /**
      * 请求接口需要的参数
@@ -73,7 +80,7 @@ export default {
     urlParam: {
       type: Object,
       default: () => {
-        return {}
+        return {};
       }
     },
     /**
@@ -81,21 +88,21 @@ export default {
      */
     resultKey: {
       type: String,
-      default: 'data'
+      default: "data"
     },
     /**
      * 要展示的label对应的key值
      */
     labelKey: {
       type: String,
-      default: 'label'
+      default: "label"
     },
     /**
      * 要展示的value对应的key值
      */
     valueKey: {
       type: String,
-      default: 'code'
+      default: "code"
     },
     /**
      * 是否多选
@@ -126,7 +133,7 @@ export default {
      */
     remoteKey: {
       type: String,
-      default: 'keyword'
+      default: "keyword"
     },
     /**
      * 自定义搜索方法
@@ -186,40 +193,40 @@ export default {
       sourceData: null,
       dataArray: this.data,
       isLoading: false
-    }
+    };
   },
   created() {
     this.selected =
-      Object.prototype.toString.call(this.selected) === '[object Number]' ?
-        String(this.selected) :
-        this.selected
+      Object.prototype.toString.call(this.selected) === "[object Number]"
+        ? String(this.selected)
+        : this.selected;
   },
   mounted() {
-    this.getSelectData()
+    this.getSelectData();
   },
   watch: {
     selected(val) {
-      this.$emit('input', val)
+      this.$emit("input", val);
     },
     dataUrl(val) {
-      this.immediate && !this.isLoading && this.getSelectData()
+      this.immediate && !this.isLoading && this.getSelectData();
     },
     urlParam: {
       handler(val) {
-        this.immediate && !this.isLoading && this.getSelectData()
+        this.immediate && !this.isLoading && this.getSelectData();
       },
       deep: true
     },
     value(val) {
       this.selected =
-        Object.prototype.toString.call(val) === '[object Number]' ?
-          String(val) :
-          val
-      this.mergeData(this.dataArray, this.sourceData)
+        Object.prototype.toString.call(val) === "[object Number]"
+          ? String(val)
+          : val;
+      this.mergeData(this.dataArray, this.sourceData);
     },
     data: {
       handler(val) {
-        this.dataArray = val
+        this.dataArray = val;
       },
       deep: true
     },
@@ -229,20 +236,20 @@ export default {
           (this.autoSelect || this.defaultFirst) &&
           this.$nextTick(() => {
             if (
-              this.autoSelect && val.length === 1 ||
-              this.defaultFirst && this.$utils.isEmpty(this.selected)
+              (this.autoSelect && val.length === 1) ||
+              (this.defaultFirst && this.$utils.isEmpty(this.selected))
             ) {
-              let firstCode = this.getValue(val[0])
+              let firstCode = this.getValue(val[0]);
               if (this.selected !== firstCode) {
                 if (this.multiple) {
-                  this.selected = [this.valueItem ? val[0] : firstCode]
+                  this.selected = [this.valueItem ? val[0] : firstCode];
                 } else {
-                  this.selected = this.valueItem ? val[0] : firstCode
+                  this.selected = this.valueItem ? val[0] : firstCode;
                 }
-                this.onSelect && this.onSelect(val[0])
+                this.onSelect && this.onSelect(val[0]);
               }
             }
-          })
+          });
       },
       deep: true
     }
@@ -252,76 +259,76 @@ export default {
      * 重置
      */
     reset() {
-      this.dataArray = null
-      this.selected = ''
+      this.dataArray = null;
+      this.selected = "";
     },
     /**
      * 获取数据
      */
     getSelectData() {
-      if (this.remote || this.$utils.isEmpty(this.dataUrl)) return
-      let result
-      if (this.method === 'post' || this.method === 'POST') {
-        this.isLoading = true
+      if (this.remote || this.$utils.isEmpty(this.dataUrl)) return;
+      let result;
+      if (this.method === "post" || this.method === "POST") {
+        this.isLoading = true;
         result = this.axios({
           url: this.dataUrl,
           silence: true,
           data: this.urlParam
-        })
-      } else if (this.method === 'get' || this.method === 'GET') {
-        this.isLoading = true
+        });
+      } else if (this.method === "get" || this.method === "GET") {
+        this.isLoading = true;
         result = this.axios(this.dataUrl, {
           params: this.urlParam,
           silence: true
-        })
+        });
       }
-      this.filterData(result)
+      this.filterData(result);
     },
     /**
      * 获取value
      */
     getValue(item, valueItem) {
-      return valueItem ?
-        item :
-        Object.prototype.toString.call(item) === '[object Object]' ?
-          String(item[this.valueKey]) :
-          item
+      return valueItem
+        ? item
+        : Object.prototype.toString.call(item) === "[object Object]"
+        ? String(item[this.valueKey])
+        : item;
     },
     /**
      * 获取label
      */
     getLabel(item) {
-      return item[this.labelKey]
+      return item[this.labelKey];
     },
     /**
      * 选中值改变监听
      */
     change(val) {
-      this.$emit('input', val)
-      this.$emit('change', val)
-      let dataArray = this.$utils.deepClone(this.dataArray)
+      this.$emit("input", val);
+      this.$emit("change", val);
+      let dataArray = this.$utils.deepClone(this.dataArray);
       this.$nextTick(() => {
         this.onSelect &&
           this.onSelect(
-            Array.isArray(dataArray) ?
-              dataArray.find(
-                item => String(this.getValue(item)) === String(val)
-              ) :
-              (function() {
-                let obj = {}
-                this.$utils.forEach(dataArray, (value, key) => {
-                  if (String(value) === String(val)) {
-                    obj = {
-                      [this.labelKey]: key,
-                      [this.valueKey]: value
+            Array.isArray(dataArray)
+              ? dataArray.find(
+                  item => String(this.getValue(item)) === String(val)
+                )
+              : (function() {
+                  let obj = {};
+                  this.$utils.forEach(dataArray, (value, key) => {
+                    if (String(value) === String(val)) {
+                      obj = {
+                        [this.labelKey]: key,
+                        [this.valueKey]: value
+                      };
                     }
-                  }
-                })
-                return obj
-              })()
-          )
-        dataArray = null
-      })
+                  });
+                  return obj;
+                })()
+          );
+        dataArray = null;
+      });
     },
     /**
      * 下拉框出现/隐藏时触发
@@ -330,28 +337,28 @@ export default {
       visible &&
         !this.remote &&
         (!this.cache || !this.dataArray) &&
-        this.getSelectData()
-      !visible && this.remote && (this.dataArray = [])
+        this.getSelectData();
+      !visible && this.remote && (this.dataArray = []);
     },
     /**
      * 远程搜索
      */
     remoteMethod(keyword) {
-      if (this.$utils.isEmpty(keyword)) return
-      let result
-      if (this.method === 'post' || this.method === 'POST') {
+      if (this.$utils.isEmpty(keyword)) return;
+      let result;
+      if (this.method === "post" || this.method === "POST") {
         result = this.axios({
           url: this.dataUrl,
           silence: true,
           data: { ...this.urlParam, [this.remoteKey]: keyword }
-        })
-      } else if (this.method === 'get' || this.method === 'GET') {
+        });
+      } else if (this.method === "get" || this.method === "GET") {
         result = this.axios(this.dataUrl, {
           params: { ...this.urlParam, [this.remoteKey]: keyword },
           silence: true
-        })
+        });
       }
-      this.filterData(result)
+      this.filterData(result);
     },
     /**
      * 过滤
@@ -361,27 +368,27 @@ export default {
         result.then &&
         result
           .then(resp => {
-            this.isLoading = false
+            this.isLoading = false;
             let resultData = resp[this.resultKey] || resp,
-              resultArray = Array.isArray(resultData) ? resultData : resultData
-            this.sourceData = Array.isArray(resultArray) ?
-              [...resultArray] :
-              { ...resultArray }
-            this.mergeData(resultArray, this.sourceData)
-            this.onResponse && this.onResponse(resp)
+              resultArray = Array.isArray(resultData) ? resultData : resultData;
+            this.sourceData = Array.isArray(resultArray)
+              ? [...resultArray]
+              : { ...resultArray };
+            this.mergeData(resultArray, this.sourceData);
+            this.onResponse && this.onResponse(resp);
           })
-          .catch(error => (this.isLoading = false))
+          .catch(error => (this.isLoading = false));
     },
     /**
      * 合并数据
      */
     mergeData(newOld, oldVal) {
-      this.dataArray = this.sourceFilter ?
-        this.sourceFilter(
-          newOld,
-          Array.isArray(oldVal) ? [...oldVal] : { ...oldVal }
-        ) :
-        newOld
+      this.dataArray = this.sourceFilter
+        ? this.sourceFilter(
+            newOld,
+            Array.isArray(oldVal) ? [...oldVal] : { ...oldVal }
+          )
+        : newOld;
     },
     /**
      * 是否为空数据
@@ -390,10 +397,8 @@ export default {
       return (
         this.$utils.isEmptyObject(this.dataArray) ||
         this.$utils.isEmptyArray(this.dataArray)
-      )
+      );
     }
   }
-}
+};
 </script>
-
-

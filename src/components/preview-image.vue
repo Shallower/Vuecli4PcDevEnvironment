@@ -1,12 +1,14 @@
-/*
- * 影像预览
- * @Author: liangzc 
- * @Date: 2018-07-18 15:12:15 
- * @Last Modified by: liangzc
- * @Last Modified time: 2018-10-09 10:56:09
- */
- <template>
-  <div ref="preview"
+<!--
+ * @Descripttion: 影像预览
+ * @version: 1.0
+ * @Author: Hevin
+ * @Date: 2020-05-12 11:54:17
+ * @LastEditors: Hevin
+ * @LastEditTime: 2020-05-21 18:21:18
+-->
+<template>
+  <div
+    ref="preview"
     class="preview-image"
     :style="{
       width,
@@ -15,85 +17,104 @@
       minHeight,
       maxWidth,
       maxHeight
-    }">
-    <div v-if="showTitle"
-      class="preview-title">
+    }"
+  >
+    <div v-if="showTitle" class="preview-title">
       <span>{{ title }}</span>
-      <button v-if="showClose && !disabled"
+      <button
+        v-if="showClose && !disabled"
         type="button"
         aria-label="Close"
         class="preview-title__headerbtn"
-        @click="doClose">
+        @click="doClose"
+      >
         <i class="el-icon el-icon-close" />
       </button>
     </div>
-    <el-tooltip :disabled="$utils.isEmpty(tipContent)"
+    <el-tooltip
+      :disabled="$utils.isEmpty(tipContent)"
       :effect="tipEffect"
       :placement="tipPlacement"
       :popper-class="popperClass"
-      ref="tooltip">
-      <slot name="tooltip"
-        slot="content">
+      ref="tooltip"
+    >
+      <slot name="tooltip" slot="content">
         {{ tipContent }}
       </slot>
-      <img ref="img"
+      <img
+        ref="img"
         class="preview-area-img"
         v-show="isComplete"
         width="100%"
         :style="{
-        display: 'block',
-        width: fill ? '100%' : 'auto',
-        height: fill ? '100%' : 'auto',
-        maxWidth: imgReWidth > 0 ? `${imgReWidth}px` : '100%',
-        maxHeight: imgReHeight > 0 ? `${imgReHeight}px` : '100%'
-      }"
+          display: 'block',
+          width: fill ? '100%' : 'auto',
+          height: fill ? '100%' : 'auto',
+          maxWidth: imgReWidth > 0 ? `${imgReWidth}px` : '100%',
+          maxHeight: imgReHeight > 0 ? `${imgReHeight}px` : '100%'
+        }"
         @load="loadComplete"
         @error="loadImage"
         @dblclick="noneImgClick ? null : preview()"
-        @click="noneImgClick ? null : preview()">
-      <img class="preview-area-img"
+        @click="noneImgClick ? null : preview()"
+      />
+      <img
+        class="preview-area-img"
         v-show="placeholder"
         width="100%"
         :style="{
-        display: 'block',
-        maxWidth: imgReWidth > 0 ? `${imgReWidth}px` : '100%',
-        maxHeight: imgReHeight > 0 ? `${imgReHeight}px` : '100%'
-      }"
-        :src="placeholder">
+          display: 'block',
+          maxWidth: imgReWidth > 0 ? `${imgReWidth}px` : '100%',
+          maxHeight: imgReHeight > 0 ? `${imgReHeight}px` : '100%'
+        }"
+        :src="placeholder"
+      />
     </el-tooltip>
-    <i v-if="!placeholder && placeIonfont && !isComplete 
-              && $utils.isEmpty(text) && !$slots.text"
-      :class="['iconfont', placeIonfont]" />
-    <i v-if="showPreview && isComplete && !disabled"
+    <i
+      v-if="
+        !placeholder &&
+          placeIonfont &&
+          !isComplete &&
+          $utils.isEmpty(text) &&
+          !$slots.text
+      "
+      :class="['iconfont', placeIonfont]"
+    />
+    <i
+      v-if="showPreview && isComplete && !disabled"
       :class="{
         'el-icon-zoom-in': !loading,
         'el-icon-loading': loading
       }"
       @dblclick.stop="preview"
-      @click.stop="preview" />
-    <span v-if="!$utils.isEmpty(text) || $slots.text"
-      class="preview-area-text">
+      @click.stop="preview"
+    />
+    <span v-if="!$utils.isEmpty(text) || $slots.text" class="preview-area-text">
       <slot name="text">
         {{ text }}
       </slot>
     </span>
-    <x-dialog ref="imageDialog"
+    <x-dialog
+      ref="imageDialog"
       :title="title"
       hide-footer
       :width="dialogWidth"
-      :append-to-body="appendToBody">
-      <img ref="previewImg"
+      :append-to-body="appendToBody"
+    >
+      <img
+        ref="previewImg"
         slot-scope="scope"
         width="100%"
         @load="loadDialogImg"
         :src="scope.data"
-        alt="">
+        alt=""
+      />
     </x-dialog>
   </div>
 </template>
 <script>
 export default {
-  name: 'preview-image',
+  name: "preview-image",
   props: {
     /**
      * 图片地址
@@ -116,7 +137,7 @@ export default {
      */
     placeIonfont: {
       type: String,
-      default: 'icon-holder-picture'
+      default: "icon-holder-picture"
     },
     /**
      * tooltip content
@@ -139,7 +160,7 @@ export default {
      */
     tipPlacement: {
       type: String,
-      default: 'top'
+      default: "top"
     },
     /**
      * 图片加载延时，默认立即加载
@@ -200,7 +221,7 @@ export default {
      */
     dialogWidth: {
       type: String,
-      default: '50%'
+      default: "50%"
     },
     /**
      * 宽度
@@ -302,79 +323,79 @@ export default {
       loading: false,
       imgFail: null,
       imgSuccess: null
-    }
+    };
   },
   mounted() {
-    window.addEventListener('resize', this.resize)
-    this.init()
+    window.addEventListener("resize", this.resize);
+    this.init();
   },
   watch: {
     src(val) {
-      this.init()
+      this.init();
     },
     ws(val) {
-      this.init()
+      this.init();
     }
   },
   computed: {
     showTitle() {
-      return this.title || this.showClose
+      return this.title || this.showClose;
     },
     toolTip() {
-      return !this.$utils.isEmpty(this.tipContent) ?
-        this.tipContent :
-        this.toolTipContent
+      return !this.$utils.isEmpty(this.tipContent)
+        ? this.tipContent
+        : this.toolTipContent;
     },
     loadImgFail() {
-      return this.imgFail || this.loadFail
+      return this.imgFail || this.loadFail;
     },
     loadImgSuccess() {
-      return this.imgSuccess || this.loadSuccess
+      return this.imgSuccess || this.loadSuccess;
     }
   },
   methods: {
     loadLoop() {
       try {
-        let loop = this.$refs.img.getAttribute('loop')
-        return this.$utils.isEmpty(loop) ? this.loop : JSON.parse(loop)
+        let loop = this.$refs.img.getAttribute("loop");
+        return this.$utils.isEmpty(loop) ? this.loop : JSON.parse(loop);
       } catch (error) {
-        return this.loop
+        return this.loop;
       }
     },
     resize() {
       this.$nextTick(() => {
-        this.divWidth = 0
-        this.initStyle()
-      })
+        this.divWidth = 0;
+        this.initStyle();
+      });
     },
     initStyle() {
       if (
         this.$refs.preview &&
         (this.divWidth === 0 || this.divWidth === undefined)
       ) {
-        this.divWidth = this.$refs.preview.offsetWidth
+        this.divWidth = this.$refs.preview.offsetWidth;
         let width = this.imgWidth,
-          height = this.imgHeight
+          height = this.imgHeight;
         if (this.imgWidth > this.divWidth || this.imgWidth <= 0) {
-          width = this.divWidth
-          height = height / (this.imgWidth / width)
+          width = this.divWidth;
+          height = height / (this.imgWidth / width);
         }
         if (this.imgWidth < this.divWidth) {
-          width = this.divWidth
-          height = height * (this.divWidth / this.imgWidth)
+          width = this.divWidth;
+          height = height * (this.divWidth / this.imgWidth);
         }
-        this.imgReWidth = width
-        this.imgReHeight = height
-        this.divHeight = this.showTitle ? height + 30 : height
+        this.imgReWidth = width;
+        this.imgReHeight = height;
+        this.divHeight = this.showTitle ? height + 30 : height;
       }
     },
     init() {
-      this.$nextTick(() => this.initStyle())
-      this.loading = true
+      this.$nextTick(() => this.initStyle());
+      this.loading = true;
       if (!this.$utils.isEmpty(this.src)) {
-        this.initSrc()
+        this.initSrc();
       } else if (!this.$utils.isEmpty(this.ws)) {
-        this.initSocket()
+        this.initSocket();
       }
     },
     /**
@@ -382,74 +403,74 @@ export default {
      */
     initSrc(src) {
       setTimeout(() => {
-        this.reset()
-        this.imgSrc = src || this.src
+        this.reset();
+        this.imgSrc = src || this.src;
         if (
           this.$utils.isEmpty(this.imgSrc) ||
           !this.$utils.isEmpty(this.imgWs)
         )
-          return
+          return;
         this.loadLoop() &&
           (this.timer.interval = setTimeout(() => {
-            this.destoryTickClock()
-            this.loading = false
-            this.imgCallback()
-            console.warn('image load timeout!')
-          }, this.timeout))
-        this.$refs.img.src = this.imgSrc
-      }, this.delay)
+            this.destoryTickClock();
+            this.loading = false;
+            this.imgCallback();
+            console.warn("image load timeout!");
+          }, this.timeout));
+        this.$refs.img.src = this.imgSrc;
+      }, this.delay);
     },
     /**
      * 初始化Socket
      */
     initSocket(ws) {
-      this.reset()
-      this.imgWs = ws || this.ws
+      this.reset();
+      this.imgWs = ws || this.ws;
       if (this.$utils.isEmpty(this.imgWs) || !this.$utils.isEmpty(this.imgSrc))
-        return
-      this.$refs.img && this.$refs.img.removeAttribute('loop')
+        return;
+      this.$refs.img && this.$refs.img.removeAttribute("loop");
       this.socket = this.$utils.createWebSocket(this.imgWs, {
         heartCheck: this.heartCheck,
         reconnect: this.reconnect,
         heartTime: this.heartTime,
         callbacks: {
           onopen: () => {
-            this.loading = false
+            this.loading = false;
           },
           onclose: () => {
-            this.loading = false
+            this.loading = false;
           },
           onerror: () => {
-            this.loading = false
+            this.loading = false;
           },
           onmessage: event => {
-            this.loading = false
-            let selfRefs = this.$refs
-            let data = event.data
+            this.loading = false;
+            let selfRefs = this.$refs;
+            let data = event.data;
             if (
-              typeof data === 'object' &&
+              typeof data === "object" &&
               window.Blob &&
               data instanceof Blob &&
               this.imgWs === (event.currentTarget || {}).url
             ) {
-              let result = window.URL.createObjectURL(data)
+              let result = window.URL.createObjectURL(data);
               if (selfRefs.img) {
-                selfRefs.img.src = result
+                selfRefs.img.src = result;
                 if (selfRefs.imageDialog.visiable && selfRefs.previewImg) {
-                  selfRefs.previewImg.src = result
+                  selfRefs.previewImg.src = result;
                 }
-                result = null
+                result = null;
               }
             } else {
-              let result = this.$utils.evalJson(event.data)
+              let result = this.$utils.evalJson(event.data);
               if (!this.$utils.isEmpty(this.wsKeyPath)) {
-                this.imgSrc = this.$utils.get(result, this.wsKeyPath)
-                this.initSrc()
+                this.imgSrc = this.$utils.get(result, this.wsKeyPath);
+                this.initSrc();
               }
             }
           }
         }
-      })
+      });
     },
     /**
      * 设置图片地址
@@ -460,7 +481,7 @@ export default {
         this.timer.interval !== undefined &&
         this.timer.interval !== null
       ) {
-        clearTimeout(this.timer.timeout)
+        clearTimeout(this.timer.timeout);
         !this.$utils.isEmpty(this.imgSrc) &&
           (this.timer.timeout = setTimeout(
             () =>
@@ -469,22 +490,22 @@ export default {
                 this.imgSrc
               )),
             this.interval
-          ))
+          ));
       } else {
-        this.loading = false
-        this.isComplete = false
-        this.imgCallback()
+        this.loading = false;
+        this.isComplete = false;
+        this.imgCallback();
       }
     },
     /**
      * 加载完毕
      */
     loadComplete() {
-      !this.$utils.isEmpty(this.imgSrc) && this.destoryTickClock()
-      this.loading = false
-      this.isComplete = true
-      window.URL && window.URL.revokeObjectURL(this.$refs.img.src)
-      this.imgCallback()
+      !this.$utils.isEmpty(this.imgSrc) && this.destoryTickClock();
+      this.loading = false;
+      this.isComplete = true;
+      window.URL && window.URL.revokeObjectURL(this.$refs.img.src);
+      this.imgCallback();
     },
     /**
      * dialog image 加载完毕
@@ -492,15 +513,15 @@ export default {
     loadDialogImg() {
       window.URL &&
         this.$refs.previewImg &&
-        window.URL.revokeObjectURL(this.$refs.previewImg.src)
+        window.URL.revokeObjectURL(this.$refs.previewImg.src);
     },
     imgCallback() {
       if (!this.$utils.isEmpty(this.imgSrc)) {
-        this.destoryTickClock()
-        this.$refs.img && this.$refs.img.removeAttribute('loop')
-        this.isComplete ? this.loadImgSuccess() : this.loadImgFail()
-        this.imgFail = null
-        this.imgSuccess = null
+        this.destoryTickClock();
+        this.$refs.img && this.$refs.img.removeAttribute("loop");
+        this.isComplete ? this.loadImgSuccess() : this.loadImgFail();
+        this.imgFail = null;
+        this.imgSuccess = null;
       }
     },
     /**
@@ -508,16 +529,16 @@ export default {
      */
     preview() {
       if (!this.loading && this.isComplete && !this.disabled) {
-        this.$refs.imageDialog.open(this.$refs.img.src)
+        this.$refs.imageDialog.open(this.$refs.img.src);
       }
     },
     /**
      * 点击关闭按钮
      */
     doClose() {
-      if (this.beforeClose && this.beforeClose() || !this.beforeClose) {
-        this.reset()
-        this.onClose && this.onClose(this.extra)
+      if ((this.beforeClose && this.beforeClose()) || !this.beforeClose) {
+        this.reset();
+        this.onClose && this.onClose(this.extra);
       }
     },
     /**
@@ -530,77 +551,77 @@ export default {
      */
     setSrc(src, { loop = this.loop, fail, success } = { loop: this.loop }) {
       // if (!this.$utils.isEmpty(src)) {
-      this.$refs.img && this.$refs.img.setAttribute('loop', loop)
-      this.imgFail = fail
-      this.imgSuccess = success
-      this.initSrc(src)
+      this.$refs.img && this.$refs.img.setAttribute("loop", loop);
+      this.imgFail = fail;
+      this.imgSuccess = success;
+      this.initSrc(src);
       // }
     },
     /**
      * 获取 Src
      */
     getSrc() {
-      return this.imgSrc
+      return this.imgSrc;
     },
     /**
      * 设置Ws
      */
     setWs(ws) {
       // if (!this.$utils.isEmpty(ws)) {
-      this.$refs.img && this.$refs.img.removeAttribute('loop')
-      this.imgFail = null
-      this.imgSuccess = null
-      this.initSocket(ws)
+      this.$refs.img && this.$refs.img.removeAttribute("loop");
+      this.imgFail = null;
+      this.imgSuccess = null;
+      this.initSocket(ws);
       // }
     },
     /**
      * 获取 ws
      */
     getWs() {
-      return this.imgWs
+      return this.imgWs;
     },
     /**
      * 设置TipContent
      */
     setTipContent(content) {
-      this.toolTipContent = content
+      this.toolTipContent = content;
     },
     /**
      * 销毁定时器
      */
     destoryTickClock() {
-      clearTimeout(this.timer.timeout)
-      this.timer.timeout = null
-      clearInterval(this.timer.interval)
-      this.timer.interval = null
+      clearTimeout(this.timer.timeout);
+      this.timer.timeout = null;
+      clearInterval(this.timer.interval);
+      this.timer.interval = null;
       if (this.socket) {
-        this.socket.close()
-        this.socket = null
+        this.socket.close();
+        this.socket = null;
       }
     },
     /**
      * 重置
      */
     reset() {
-      this.imgSrc = null
-      this.imgWs = null
-      this.toolTipContent = null
-      this.isComplete = false
-      this.loading = false
-      this.destoryTickClock()
+      this.imgSrc = null;
+      this.imgWs = null;
+      this.toolTipContent = null;
+      this.isComplete = false;
+      this.loading = false;
+      this.destoryTickClock();
     }
   },
   errorCaptured() {
-    this.reset()
-    window.removeEventListener('resize', this.resize)
+    this.reset();
+    window.removeEventListener("resize", this.resize);
   },
   beforeDestroy() {
-    this.reset()
-    window.removeEventListener('resize', this.resize)
+    this.reset();
+    window.removeEventListener("resize", this.resize);
   }
-}
+};
 </script>
- <style lang="scss">
+<style lang="scss">
 .preview-image {
   position: relative;
   text-align: center;
@@ -652,7 +673,7 @@ export default {
     display: block;
     position: relative;
   }
-  & > i[class^='el-icon-'] {
+  & > i[class^="el-icon-"] {
     color: white;
     font-size: 20px;
     cursor: pointer;
@@ -664,5 +685,3 @@ export default {
   }
 }
 </style>
- 
- 
