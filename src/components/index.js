@@ -21,6 +21,11 @@ import UploadExcel from "./upload-excel";
 import Tinymce from "./tinymce/index";
 import QRCode from "./qrcode";
 import PreviewImage from "./preview-image";
+import InputGroup from './input-group'
+import InputBox from './input-box'
+import InputSelect from './input-select'
+import InputMercode from './input-mercode'
+import IconText from './icon-text'
 
 export {
   DatePicker,
@@ -36,5 +41,10 @@ export {
   UploadExcel,
   Tinymce,
   QRCode,
-  PreviewImage
+  PreviewImage,
+  InputBox,
+  InputGroup,
+  InputSelect,
+  InputMercode,
+  IconText
 };

@@ -13,6 +13,7 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+import { DatePicker, FilterSelect, XDialog, IconText } from './components'
 import { MapOption, RoleType } from "@/js/mapOption";
 import "./plugins";
 import "./directive";
@@ -66,6 +67,10 @@ let installGlobal = () => {
   });
 };
 installGlobal();
+Vue.component(DatePicker.name, DatePicker)
+Vue.component(FilterSelect.name, FilterSelect)
+Vue.component(XDialog.name, XDialog)
+Vue.component(IconText.name, IconText)
 window.Vue = Vue;
 new Vue({
   router,
