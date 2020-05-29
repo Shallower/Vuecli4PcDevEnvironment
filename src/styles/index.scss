@@ -83,9 +83,22 @@ input::-webkit-contacts-auto-fill-button {
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px white inset;
-  border: 1px solid #ccc !important;
-  background-image: inherit;
+//   -webkit-box-shadow: 0 0 0px 1000px white inset ;
+//   border: 1px solid #ccc !important;
+//   background-image: inherit ;
+-webkit-text-fill-color:#5cdbff;
+}
+input:-webkit-autofill {
+    -webkit-animation: autofill-fix 1s infinite;
+}
+
+@-webkit-keyframes autofill-fix {
+    from {
+        background-color: transparent
+    }
+    to {
+        background-color: transparent
+    }
 }
 
 //去掉数字输入框右侧的操作箭头
