@@ -171,12 +171,13 @@ export default {
   },
   methods: {
     logout() {
-      this.axios.get("v1/login/updateLogoutTime", {
-        params: { token: this.$store.getters.token },
-        silence: true
-      });
       this.$store.dispatch("logout");
-      window.location.reload();
+      this.$router.replace("/login");
+    //   this.axios.get("v1/login/updateLogoutTime", {
+    //     params: { token: this.$store.getters.token },
+    //     silence: true
+    //   });
+    //   window.location.reload();
     },
     destroyClock() {
       clearInterval(this.timeInterval);

@@ -7,7 +7,7 @@
  */
 
 <template>
-  <div class="line-box"
+  <div class="input-select"
     :class="{focus: isFocus}">
     <div class="i-box">
       <i class="iconfont"
@@ -383,7 +383,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.line-box {
+.input-select {
   border: 1px solid rgba(92, 219, 255, 0.5);
   width: 260px;
   height: 38px;

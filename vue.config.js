@@ -134,7 +134,8 @@ module.exports = {
       // 访问https://unpkg.com/element-ui/lib/theme-chalk/index.css获取最新版本
       css: [
         "//unpkg.com/element-ui@2.10.1/lib/theme-chalk/index.css",
-        "https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css"
+        "https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css",
+        "//at.alicdn.com/t/font_1850657_6w2uncj4fu9.css"
       ],
       js: [
         "https://cdn.jsdelivr.net/npm/@babel/polyfill@7.0.0-beta.49/dist/polyfill.min.js", //ie浏览器兼容
