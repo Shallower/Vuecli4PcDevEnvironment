@@ -169,6 +169,12 @@ module.exports = {
         // 修改它的选项...
         return options;
       });
+    //   小图打包base64格式
+      config.module
+      .rule('images')
+        .use('url-loader')
+          .loader('url-loader')
+          .tap(options => Object.assign(options, { limit: 20000 }))
 
     if (process.env.VUE_APP_ANALYZER === "true") {
       config
