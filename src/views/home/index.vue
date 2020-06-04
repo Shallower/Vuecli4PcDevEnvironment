@@ -13,7 +13,9 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+    
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

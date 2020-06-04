@@ -108,7 +108,7 @@ module.exports = {
       vue$: "vue/dist/vue.esm.js",
       "@": resolve("src"),
       "@c": path.resolve(__dirname, "./src/components"),
-      "@p": path.resolve(__dirname, "./src/pages")
+      "@v": path.resolve(__dirname, "./src/views")
     };
 
     config.externals = {
