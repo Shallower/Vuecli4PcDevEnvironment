@@ -48,13 +48,7 @@ export default {
       userInfo: {
         merCode: "",
         merName: "",
-        token: "",
-        parkInfo: {
-          parkCode: "",
-          parkName: "",
-          gwType: "",
-          gwCode: ""
-        }
+        token: ""
       },
       userNameInputBox: {
         placeholder: "请输入用户名",
@@ -76,29 +70,6 @@ export default {
   created() {},
   methods: {
     /**
-     * 跳转收费员登录
-     */
-    loginToll() {
-      if (!this.loading) {
-        //解决闸机 websocket ip+端口的模式在 wss 协议下不可用问题
-        location.href = `http://${location.host}/#/login/toll`;
-      }
-    },
-    /**
-     * 返回
-     */
-    back() {
-      if (!this.loading) {
-        history.back();
-      }
-    },
-    /**
-     * 商户选择回调
-     */
-    onMerSelect(merchant) {
-      this.userInfo.merName = merchant.merName || {};
-    },
-    /**
      * 登录
      */
     login() {
@@ -113,77 +84,29 @@ export default {
         result &&
           result
             .then(response => {
-              this.loading = false;
-              response.loginName = this.loginForm.loginName;
-              let roles = (response.roleIds || "").split(",");
-              if (
-                roles.every(role => role.startWith("2"))
-              ) {
-                //运营商登录
+                this.loading = false;
+                response.loginName = this.loginForm.loginName;
+            //   let roles = (response.roleIds || "").split(",");
+            //   登录赋值
                 response.optorCode = response.merCode;
                 response.merCode = "";
-              }
-              if (roles.includes(this.RoleType.ParkMerSentryBoxToll)) {
                 this.userInfo = Object.assign(this.userInfo, response);
-                this.redirect(this.userInfo, roles);
-              } else {
-                response.merName = this.$utils.isEmpty(response.merName)
-                  ? this.userInfo.merName
-                  : response.merName;
-                this.redirect(response, roles);
-              }
+                this.$store.dispatch("updateUser", this.userInfo);
+                this.$store.dispatch("initSocket");
+                let path = "/";
+                this.$router.replace({
+                    path: this.$route.query.redirect ? this.$route.query.redirect : path,
+                    query: { from: "login" }
+                });
             })
             .catch(error => (this.loading = false));
       }
     },
-    /**
-     * 停车场选择回调
-     */
-    onParkSelect(park) {
-      this.userInfo.parkInfo.parkCode = park.parkCode;
-      this.userInfo.parkInfo.parkName = park.parkName;
-    },
-    /**
-     * 重定向
-     */
-    redirect(userInfo, roles = []) {
-      this.$store.dispatch("updateUser", userInfo);
-      this.$store.dispatch("initSocket");
-      let path = "/";
-      if (Array.isArray(roles)) {
-        if (
-          roles.some(
-            role =>
-              String(role) === this.RoleType.ParkMerAdmin ||
-              String(role) === this.RoleType.ParkMerCfg
-          ) &&
-          this.$utils.isEmpty(this.$utils.get(userInfo, "parkInfo.parkCode"))
-        ) {
-          path = "property/parking";
-        } else if (roles.includes(this.RoleType.ParkMerSentryBoxToll)) {
-          path = "/merchant/console";
-        }
-      }
-      this.$router.replace({
-        path: this.$route.query.redirect ? this.$route.query.redirect : path,
-        query: { from: "login" }
-      });
-    }
   },
   watch: {
     $route(to, from) {
     },
     loginForm: {
-      handler(newVal) {
-        this.$nextTick(() => {
-          this.loginActive = this.$refs.inputGroup
-            ? this.$refs.inputGroup.validate(true)
-            : false;
-        });
-      },
-      deep: true
-    },
-    "userInfo.parkInfo": {
       handler(newVal) {
         this.$nextTick(() => {
           this.loginActive = this.$refs.inputGroup
