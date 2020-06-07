@@ -115,7 +115,8 @@ module.exports = {
       vue: "Vue",
       "element-ui": "ELEMENT",
       xlsx: "XLSX",
-      "v-charts": "VeIndex",
+    //   "v-charts": "VeIndex",
+      "echarts": "echarts",
       "vue-router": "VueRouter",
       vuex: "Vuex",
       axios: "axios"
@@ -134,7 +135,7 @@ module.exports = {
       // 访问https://unpkg.com/element-ui/lib/theme-chalk/index.css获取最新版本
       css: [
         "//unpkg.com/element-ui@2.10.1/lib/theme-chalk/index.css",
-        "https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css",
+        // "https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css",
         "//at.alicdn.com/t/font_1850657_6w2uncj4fu9.css"
       ],
       js: [
@@ -145,7 +146,7 @@ module.exports = {
         "//unpkg.com/axios@0.19.0/dist/axios.min.js",
         "//unpkg.com/element-ui@2.10.1/lib/index.js",
         "https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js",
-        "https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js",
+        // "https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js",
         "https://cdn.jsdelivr.net/npm/xlsx/jszip.min.js",
         "https://cdn.jsdelivr.net/npm/xlsx/xlsx.min.js"
       ]

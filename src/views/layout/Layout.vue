@@ -218,6 +218,7 @@ export default {
     img {
       margin-top: 6px;
       margin-left: 20px;
+      height: 60px;
     }
     .top-info {
       position: absolute;
